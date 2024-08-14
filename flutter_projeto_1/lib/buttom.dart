@@ -6,23 +6,31 @@ class Buttom extends StatelessWidget {
   final Color color;
   final Color colorText;
 
-  const Buttom(this.text,
-      {super.key,
-      required this.onPressed,
-      this.color = Colors.white,
-      this.colorText = Colors.black});
+  const Buttom(
+    this.text, {
+    super.key,
+    required this.onPressed,
+    this.color = Colors.white,
+    this.colorText = Colors.black,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: color,
-      ),
-      child: Text(
-        text,
-        style: TextStyle(
-            color: colorText, fontSize: 18.0, fontWeight: FontWeight.bold),
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: color,
+        ),
+        child: Text(
+          text,
+          style: TextStyle(
+            color: colorText,
+            fontSize: 18.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
     );
   }

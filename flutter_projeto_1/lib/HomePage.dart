@@ -30,57 +30,33 @@ class Homepage extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const Text(
-                    "CARE FOR YOUR",
+                    "CARE FOR YOUR PLANTS WITH INTELLIGENCE",
                     style: TextStyle(
                       fontSize: 32.0,
                       color: Colors.white,
                     ),
                   ),
-                  const Text(
-                    "PLANTS WITH",
-                    style: TextStyle(
-                      fontSize: 32.0,
-                      color: Colors.white,
+                  const Padding(
+                    padding: EdgeInsets.only(right: 152.0),
+                    child: Text(
+                      "Empower everyone with a green thumb",
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
-                  const Text(
-                    "INTELLIGENCE",
-                    style: TextStyle(
-                      fontSize: 32.0,
-                      color: Colors.white,
-                    ),
+                  Buttom(
+                    "Skip",
+                    onPressed: () {},
+                    color: Colors.grey.shade500.withOpacity(0.3),
+                    colorText: Colors.white,
                   ),
-                  const Text(
-                    "Empower everyone",
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      color: Colors.white,
-                    ),
-                  ),
-                  const Text(
-                    "with a green thumb",
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      color: Colors.white,
-                    ),
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    child: Buttom(
-                      "Skip",
-                      onPressed: () {},
-                      color: Colors.grey.shade500.withOpacity(0.3),
-                      colorText: Colors.white,
-                    ),
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    child: Buttom(
-                      "Continue",
-                      onPressed: () {},
-                      color: Colors.white,
-                      colorText: Colors.black,
-                    ),
+                  Buttom(
+                    "Continue",
+                    onPressed: () {},
+                    color: Colors.white,
+                    colorText: Colors.black,
                   ),
                 ],
               ),
