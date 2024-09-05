@@ -5,14 +5,16 @@ class Buttom extends StatelessWidget {
   final VoidCallback onPressed;
   final Color color;
   final Color colorText;
+  final Color borderColor;
+  final double borderWidth;
 
-  const Buttom(
-    this.text, {
-    super.key,
-    required this.onPressed,
-    this.color = Colors.white,
-    this.colorText = Colors.black,
-  });
+  const Buttom(this.text,
+      {super.key,
+      required this.onPressed,
+      this.color = Colors.white,
+      this.colorText = Colors.black,
+      this.borderWidth = 0,
+      this.borderColor = Colors.white});
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +23,8 @@ class Buttom extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: color,
-        ),
+            backgroundColor: color,
+            side: BorderSide(color: borderColor, width: borderWidth)),
         child: Text(
           text,
           style: TextStyle(

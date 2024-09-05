@@ -55,6 +55,7 @@ class Homepage extends StatelessWidget {
                     },
                     color: Colors.grey.shade500.withOpacity(0.3),
                     colorText: Colors.white,
+                    borderColor: Colors.transparent,
                   ),
                   Buttom(
                     "Continue",
@@ -63,6 +64,7 @@ class Homepage extends StatelessWidget {
                     },
                     color: Colors.white,
                     colorText: Colors.black,
+                    borderColor: Colors.white,
                   ),
                 ],
               ),
