@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_projeto_1/buttom.dart';
+import 'package:flutter_projeto_1/page1.dart';
+import 'package:flutter_projeto_1/widgets/buttom.dart';
+import 'package:flutter_projeto_1/widgets/navigator.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
@@ -48,13 +50,17 @@ class Homepage extends StatelessWidget {
                   ),
                   Buttom(
                     "Skip",
-                    onPressed: () {},
+                    onPressed: () async {
+                      await navigator(context, const Page1());
+                    },
                     color: Colors.grey.shade500.withOpacity(0.3),
                     colorText: Colors.white,
                   ),
                   Buttom(
                     "Continue",
-                    onPressed: () {},
+                    onPressed: () async {
+                      await navigator(context, const Page1());
+                    },
                     color: Colors.white,
                     colorText: Colors.black,
                   ),
