@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_projeto_1/widgets/buttom.dart';
-import 'package:flutter_projeto_1/widgets/buttom_page1.dart';
 
 class ImageCard extends StatelessWidget {
   final String image;

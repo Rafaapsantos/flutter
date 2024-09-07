@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_projeto_1/page3.dart';
 import 'package:flutter_projeto_1/widgets/buttom_page1.dart';
 import 'package:flutter_projeto_1/widgets/image_card.dart';
+import 'package:flutter_projeto_1/widgets/navigator.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Page1 extends StatelessWidget {
@@ -26,7 +28,7 @@ class Page1 extends StatelessWidget {
                   timeInSecForIosWeb: 1,
                   backgroundColor: Colors.red,
                   textColor: Colors.white,
-                  fontSize: 8.0);
+                  fontSize: 16.0);
             },
             icon: const Icon(
               Icons.notifications,
@@ -103,8 +105,8 @@ class Page1 extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          print("ADICIONAR");
+        onPressed: () async {
+          await navigator(context, const Page3());
         },
         backgroundColor: Colors.white.withOpacity(0.3),
         child: const Icon(
