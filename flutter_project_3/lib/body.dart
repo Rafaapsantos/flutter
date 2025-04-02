@@ -32,7 +32,7 @@ class Body extends StatelessWidget {
             child: PageView(
               children: [
                 for (int i = 1; i <= 5; i++)
-                  Image.asset("assets/imagens/dog$i.png", fit: BoxFit.cover),
+                  Image.asset("assets/images/dog$i.png", fit: BoxFit.cover),
               ],
             ),
           ),

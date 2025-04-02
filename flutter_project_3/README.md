@@ -1,16 +1,34 @@
-# flutter_project_3
+# 📱 Dog App 
+Esse projeto foi como um rascunho para colocar em prática tudo o que aprendi no curso. Enquanto assistia às aulas, fui testando cada conceito no código.
 
-A new Flutter project.
+## 🚀 O que foi praticado
+Durante o desenvolvimento, pude praticar e aprimorar diversas habilidades no Flutter, incluindo:
 
-## Getting Started
+✅ Como adicionar imagens ao projeto e configurá-las no pubspec.yaml
+✅ Exibição e estilização de textos
+✅ Criação e personalização de botões
+✅ Desenvolvimento de widgets personalizados para reutilização de componentes
+✅ Navegação entre telas de forma fluida
+✅ Implementação de mensagens de erro para melhorar a experiência do usuário
+✅ Uso de TABS para organizar o conteúdo
+✅ Construção de listas (ListView) e grids (GridView) dinâmicos
+✅ Ajuste de padding e margens para um layout mais harmônico
 
-This project is a starting point for a Flutter application.
+Cada detalhe foi uma oportunidade de aprendizado! 🚀✨
 
-A few resources to get you started if this is your first Flutter project:
+## 🎥 Demonstração
+Aqui está um vídeo simples mostrando o projetinho:
+![Telas Desenvolvidas por mim usando flutter](./assets/README/image_readme1.gif)
+![Telas Desenvolvidas por mim usando flutter](./assets/README/image_readme2.gif)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 📌 Tecnologias utilizadas
+- Flutter
+- Dart
+
+Sinta-se à vontade para explorar o código e usar como referência! 🚀
+
+## 💬 Quer trocar uma ideia sobre Flutter?
+Se você também está estudando ou tem interesse na tecnologia, fique à vontade para me chamar! Vamos aprender juntos! 😊
+
+__Esse é o meu Linkedln:__ [Clique aqui!](https://www.linkedin.com/in/rafaela-aparecida-dos-santos-28585a283/)

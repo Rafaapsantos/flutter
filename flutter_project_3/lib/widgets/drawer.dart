@@ -19,7 +19,7 @@ class DrawerList extends StatelessWidget {
             ),
             ListTile(
               leading: Icon(Icons.star),
-              title: Text("Favotito"),
+              title: Text("Favorito"),
               subtitle: Text("Mais informações..."),
               trailing: Icon(Icons.arrow_forward),
               //posso colocar o onTap aqui tambem
@@ -35,7 +35,7 @@ class DrawerList extends StatelessWidget {
               title: Text("Logout"),
               subtitle: Text("Mais informações..."),
               trailing: Icon(Icons.arrow_forward),
-            )
+            ),
           ],
         ),
       ),

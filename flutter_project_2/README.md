@@ -1,16 +1,25 @@
-# flutter_project_2
+# 📱 Relax App 🍃 - Inspiração do Dribbble
+Este é o meu primeiro projetinho que fiz para praticar minhas habilidades no Flutter, baseado em uma inspiração do site [Dribbble](https://dribbble.com/).
 
-A new Flutter project.
+## 🚀 O que foi praticado
+Durante o desenvolvimento, coloquei em prática:
+✅ Como adicionar e configurar imagens no pubspec.yaml
+✅ Posicionamento e estilização de textos
+✅ Implementação de botões interativos
 
-## Getting Started
+Foi um ótimo aprendizado! 🚀✨
 
-This project is a starting point for a Flutter application.
+## 🎥 Demonstração
+Aqui está um print simples mostrando o projetinho:
+![Telas Desenvolvidas por mim usando flutter](./assets/README/image_readme.jpeg)
 
-A few resources to get you started if this is your first Flutter project:
+## 📌 Tecnologias utilizadas
+- Flutter
+- Dart
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Sinta-se à vontade para explorar o código e usar como referência! 🚀
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 💬 Quer trocar uma ideia sobre Flutter?
+Se você também está estudando ou tem interesse na tecnologia, fique à vontade para me chamar! Vamos aprender juntos! 😊
+
+__Esse é o meu Linkedln:__ [Clique aqui!](https://www.linkedin.com/in/rafaela-aparecida-dos-santos-28585a283/)

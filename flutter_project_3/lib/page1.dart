@@ -14,21 +14,21 @@ class _Page1State extends State<Page1> {
   bool _isGridView = true;
 
   final List<Dog> dogs = [
-    const Dog(nome: "Jack Russel", foto: "assets/imagens/dog1.png"),
-    const Dog(nome: "Labrador", foto: "assets/imagens/dog2.png"),
-    const Dog(nome: "Pug", foto: "assets/imagens/dog3.png"),
-    const Dog(nome: "Fila", foto: "assets/imagens/dog4.png"),
-    const Dog(nome: "Pastor", foto: "assets/imagens/dog5.png"),
-    const Dog(nome: "Jack Russel", foto: "assets/imagens/dog1.png"),
-    const Dog(nome: "Labrador", foto: "assets/imagens/dog2.png"),
-    const Dog(nome: "Pug", foto: "assets/imagens/dog3.png"),
-    const Dog(nome: "Fila", foto: "assets/imagens/dog4.png"),
-    const Dog(nome: "Pastor", foto: "assets/imagens/dog5.png"),
-    const Dog(nome: "Jack Russel", foto: "assets/imagens/dog1.png"),
-    const Dog(nome: "Labrador", foto: "assets/imagens/dog2.png"),
-    const Dog(nome: "Pug", foto: "assets/imagens/dog3.png"),
-    const Dog(nome: "Fila", foto: "assets/imagens/dog4.png"),
-    const Dog(nome: "Pastor", foto: "assets/imagens/dog5.png"),
+    const Dog(nome: "Jack Russel", foto: "assets/images/dog1.png"),
+    const Dog(nome: "Labrador", foto: "assets/images/dog2.png"),
+    const Dog(nome: "Pug", foto: "assets/images/dog3.png"),
+    const Dog(nome: "Fila", foto: "assets/images/dog4.png"),
+    const Dog(nome: "Pastor", foto: "assets/images/dog5.png"),
+    const Dog(nome: "Jack Russel", foto: "assets/images/dog1.png"),
+    const Dog(nome: "Labrador", foto: "assets/images/dog2.png"),
+    const Dog(nome: "Pug", foto: "assets/images/dog3.png"),
+    const Dog(nome: "Fila", foto: "assets/images/dog4.png"),
+    const Dog(nome: "Pastor", foto: "assets/images/dog5.png"),
+    const Dog(nome: "Jack Russel", foto: "assets/images/dog1.png"),
+    const Dog(nome: "Labrador", foto: "assets/images/dog2.png"),
+    const Dog(nome: "Pug", foto: "assets/images/dog3.png"),
+    const Dog(nome: "Fila", foto: "assets/images/dog4.png"),
+    const Dog(nome: "Pastor", foto: "assets/images/dog5.png"),
   ];
 
   @override
