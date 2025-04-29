@@ -2,15 +2,13 @@ import 'package:flutter/material.dart';
 
 class ImageCard extends StatelessWidget {
   final String image;
-  const ImageCard(
-    this.image, {
-    super.key,
-  });
+  final double height;
+  const ImageCard(this.image, this.height, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 500,
+      height: height,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         image: DecorationImage(
@@ -24,10 +22,7 @@ class ImageCard extends StatelessWidget {
             alignment: Alignment.bottomLeft,
             child: Padding(
               padding: EdgeInsets.all(8),
-              child: SizedBox(
-                width: 150,
-                height: 40,
-              ),
+              child: SizedBox(width: 150, height: 40),
             ),
           ),
         ],

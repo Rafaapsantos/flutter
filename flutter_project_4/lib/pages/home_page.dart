@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
             padding: const EdgeInsets.only(top: 48.0, right: 16.0, left: 16),
             child: Column(
               children: [
-                const ImageCard("photo2.webp"),
+                ImageCard("photo2.webp", 500),
                 const SizedBox(height: 8),
                 const Text(
                   'FURNITURE',
@@ -46,11 +46,11 @@ class HomePage extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(bottom: 100),
                       child: CircleAvatar(
-                        backgroundColor: Colors.orange,
+                        backgroundColor: Color(0xFF003829),
                         radius: 20,
                         child: Icon(
                           Icons.trending_flat,
-                          color: Colors.black,
+                          color: Colors.white,
                           size: 20,
                         ),
                       ),
@@ -92,8 +92,8 @@ class HomePage extends StatelessWidget {
                   onPressed: () async {
                     await navigator(context, const ShoppingPage());
                   },
-                  color: Colors.orange,
-                  colorText: Colors.black,
+                  color: Color(0xFF003829),
+                  colorText: Colors.white,
                   borderColor: Colors.transparent,
                 ),
               ],

@@ -18,7 +18,9 @@ Cada detalhe foi uma oportunidade de aprendizado! 🚀✨
 
 ## 🎥 Demonstração
 Aqui está um vídeo simples mostrando o projetinho:
+
 ![Telas Desenvolvidas por mim usando flutter](./assets/README/image_readme1.gif)
+
 ![Telas Desenvolvidas por mim usando flutter](./assets/README/image_readme2.gif)
 
 
