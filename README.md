@@ -17,20 +17,25 @@ Este repositório contém alguns dos **projetos** que desenvolvi usando flutter.
 ### 📂 Projetos Disponíveis
 Aqui estão alguns dos projetos presentes neste repositório:
 
-🔹 [flutter_projeto_1](./flutter_projeto_1/) - Breve descrição do projeto 
+🔹 [flutter_projeto_1](./flutter_project_1/) 
 
-🔹 [flutter_projeto_2](./flutter_projeto_2/)  – Breve descrição do projeto 
+🔹 [flutter_projeto_2](./flutter_project_2/)  
 
-🔹 [flutter_projeto_3](./flutter_projeto_3/)  – Breve descrição do projeto 
+🔹 [flutter_projeto_3](./flutter_project_3/)  
 
-🔹 [flutter_projeto_4](./flutter_projeto_4/)  – Breve descrição do projeto 
+🔹 [flutter_projeto_4](./flutter_project_4/)  
 
-## 📌 Próximos Passos
-🔹 Criar novos projetos explorando diferentes funcionalidades do Flutter
-
-🔹 Melhorar a organização do código e boas práticas
-
-🔹 Implementar testes para garantir a qualidade dos apps
+## 🚀 Próximos Passos para Avançar em Flutter
+1. Gerenciamento de Estado
+2. Autenticação de Usuário
+3. Persistência de Dados Local
+4. Animações Avançadas
+5. Testes Automatizados
+6. Deploy e Publicação
+7. Internacionalização (i18n)
+8. Arquitetura Limpa
+9. Integração com Serviços Avançados
+Firebase (Firestore, Analytics, Crashlytics, Push Notifications)
 
 Estou muito empolgada com esse aprendizado e ansiosa para desenvolver projetos cada vez mais avançados! 🚀
 
