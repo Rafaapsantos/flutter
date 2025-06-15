@@ -36,7 +36,7 @@ class _PokemonDetailState extends State<PokemonDetail> {
   void initState() {
     super.initState();
     _store.addListener(_onStoreUpdated);
-    _store.getPokemonCards();
+    _store.getPokemonById(widget.id);
   }
 
   @override
@@ -69,7 +69,7 @@ class _PokemonDetailState extends State<PokemonDetail> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                  icon: Icon(Icons.arrow_back, color: Colors.white),
+                  icon: const Icon(Icons.arrow_back, color: Colors.white),
                   onPressed: () => Navigator.pop(context),
                 ),
                 IconButton(
@@ -84,10 +84,7 @@ class _PokemonDetailState extends State<PokemonDetail> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(
-              left: AppSizes.medium,
-              right: AppSizes.medium,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: AppSizes.medium),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -112,7 +109,7 @@ class _PokemonDetailState extends State<PokemonDetail> {
                           horizontalSize: AppSizes.small,
                         ),
                         if (widget.types.length > 1) ...[
-                          SizedBox(height: AppSizes.extraSmall),
+                          SizedBox(width: AppSizes.extraSmall),
                           PokemonTypeChip(
                             type: secondType.name,
                             textTypeSize: AppSizes.medium,
@@ -159,10 +156,7 @@ class _PokemonDetailState extends State<PokemonDetail> {
                       ),
                     );
                   }
-                  final pokemon =
-                      _store.pokemons.where((p) => p.id == widget.id).isNotEmpty
-                          ? _store.pokemons.firstWhere((p) => p.id == widget.id)
-                          : null;
+                  final pokemon = _store.selectedPokemon;
                   if (pokemon == null) {
                     return Center(
                       child: Text(
@@ -177,10 +171,10 @@ class _PokemonDetailState extends State<PokemonDetail> {
                     weight: pokemon.weight.toString(),
                     hp: pokemon.stats.first.baseStat,
                     attack: pokemon.stats[1].baseStat,
-                    speed: pokemon.stats[2].baseStat,
+                    defense: pokemon.stats[2].baseStat,
                     specialAttack: pokemon.stats[3].baseStat,
-                    defense: pokemon.stats[4].baseStat,
-                    specialDefense: pokemon.stats[5].baseStat,
+                    specialDefense: pokemon.stats[4].baseStat,
+                    speed: pokemon.stats[5].baseStat,
                   );
                 },
               ),

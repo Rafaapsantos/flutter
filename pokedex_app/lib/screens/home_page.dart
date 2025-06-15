@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pokedex_app/core/themes/app_size.dart';
 import 'package:pokedex_app/data/datasources/pokemon_data_source.dart';
-import 'package:pokedex_app/data/models/pokemon_model.dart';
 import 'package:pokedex_app/domain/repositories/pokemon_repository.dart';
 import 'package:pokedex_app/stores/pokemon_store.dart';
 import 'package:pokedex_app/widgets/pokemon_card.dart';
@@ -19,8 +18,6 @@ class _HomePageState extends State<HomePage> {
   final PokemonStore _store = PokemonStore(
     repository: PokemonRepository(dataSource: PokemonDataSource(Dio())),
   );
-
-  String _searchQuery = '';
 
   @override
   void initState() {
@@ -39,20 +36,9 @@ class _HomePageState extends State<HomePage> {
     setState(() {});
   }
 
-  List<PokemonModel> _filterPokemons() {
-    if (_searchQuery.isEmpty) return _store.pokemons;
-    return _store.pokemons
-        .where(
-          (pokemon) => pokemon.forms.first.name.toLowerCase().contains(
-            _searchQuery.toLowerCase(),
-          ),
-        )
-        .toList();
-  }
-
   @override
   Widget build(BuildContext context) {
-    final filteredPokemons = _filterPokemons();
+    final filteredPokemons = _store.filteredPokemons;
 
     return Scaffold(
       body: Padding(
@@ -85,11 +71,7 @@ class _HomePageState extends State<HomePage> {
                   borderRadius: BorderRadius.circular(AppSizes.small),
                 ),
               ),
-              onChanged: (value) {
-                setState(() {
-                  _searchQuery = value;
-                });
-              },
+              onChanged: _store.setSearchQuery,
             ),
             SizedBox(height: AppSizes.large),
             Expanded(

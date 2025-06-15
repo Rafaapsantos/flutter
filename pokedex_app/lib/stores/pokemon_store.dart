@@ -8,34 +8,92 @@ class PokemonStore extends ChangeNotifier {
     : _repository = repository;
   final PokemonRepository _repository;
 
+  // Estados principais
   bool _isLoading = false;
   String? _errorMessage;
-  bool _success = false;
   List<PokemonModel> _pokemons = [];
+  PokemonModel? _selectedPokemon;
+  String _searchQuery = '';
 
+  // Getters públicos
   bool get isLoading => _isLoading;
   String? get errorMessage => _errorMessage;
-  bool get success => _success;
   List<PokemonModel> get pokemons => _pokemons;
+  PokemonModel? get selectedPokemon => _selectedPokemon;
+  String get searchQuery => _searchQuery;
 
+  // Getter de lista filtrada já aplicando o search
+  List<PokemonModel> get filteredPokemons {
+    if (_searchQuery.isEmpty) return _pokemons;
+    return _pokemons
+        .where(
+          (pokemon) => pokemon.forms.first.name.toLowerCase().contains(
+            _searchQuery.toLowerCase(),
+          ),
+        )
+        .toList();
+  }
+
+  // Atualiza o texto de busca
+  void setSearchQuery(String query) {
+    _searchQuery = query;
+    notifyListeners();
+  }
+
+  // Busca todos os pokemons (para a HomePage)
   Future<void> getPokemonCards() async {
     _setLoading(true);
 
     try {
-      _pokemons = await _repository.getPokemonCards();
-      _success = true;
+      final result = await _repository.getPokemonCards();
+      _pokemons = result;
       _errorMessage = null;
     } on PokemonException catch (e) {
+      debugPrint(e.toString());
       _errorMessage = e.message;
-      _success = false;
-    } catch (_) {
-      _errorMessage = 'Erro desconhecido ao buscar pokemons.';
-      _success = false;
+      _pokemons = [];
+    } catch (e) {
+      debugPrint(e.toString());
+      _errorMessage = 'Erro desconhecido ao buscar pokémons.';
+      _pokemons = [];
     } finally {
       _setLoading(false);
     }
   }
 
+  // Busca individual de um pokemon (para o detalhe)
+  Future<void> getPokemonById(int id) async {
+    _setLoading(true);
+
+    try {
+      if (_pokemons.isNotEmpty) {
+        _selectedPokemon = _pokemons.firstWhere(
+          (p) => p.id == id,
+          orElse: () => throw Exception('Não encontrado'),
+        );
+      } else {
+        final result = await _repository.getPokemonCards();
+        _pokemons = result;
+        _selectedPokemon = _pokemons.firstWhere(
+          (p) => p.id == id,
+          orElse: () => throw Exception('Não encontrado'),
+        );
+      }
+      _errorMessage = null;
+    } on PokemonException catch (e) {
+      debugPrint(e.toString());
+      _errorMessage = e.message;
+      _selectedPokemon = null;
+    } catch (e) {
+      debugPrint(e.toString());
+      _errorMessage = 'Erro ao buscar o pokémon selecionado.';
+      _selectedPokemon = null;
+    } finally {
+      _setLoading(false);
+    }
+  }
+
+  // Método privado de loading para evitar repetição
   void _setLoading(bool value) {
     _isLoading = value;
     notifyListeners();
