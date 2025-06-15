@@ -4,16 +4,6 @@ import 'package:pokedex_app/core/themes/app_size.dart';
 import 'package:pokedex_app/widgets/pokemon_characteristics.dart';
 
 class PokemonInfos extends StatelessWidget {
-  final Color typeColor;
-  final String height;
-  final String weight;
-  final int hp;
-  final int attack;
-  final int defense;
-  final int specialAttack;
-  final int specialDefense;
-  final int speed;
-
   const PokemonInfos({
     super.key,
     required this.typeColor,
@@ -27,9 +17,28 @@ class PokemonInfos extends StatelessWidget {
     required this.speed,
   });
 
+  final Color typeColor;
+  final String height;
+  final String weight;
+  final int hp;
+  final int attack;
+  final int defense;
+  final int specialAttack;
+  final int specialDefense;
+  final int speed;
+
   @override
-  Widget build(BuildContext context) => Expanded(
-    child: Container(
+  Widget build(BuildContext context) {
+    final characteristics = [
+      {'label': 'HP', 'value': hp},
+      {'label': 'Attack', 'value': attack},
+      {'label': 'Defense', 'value': defense},
+      {'label': 'Special-Attack', 'value': specialAttack},
+      {'label': 'Special-Defense', 'value': specialDefense},
+      {'label': 'Speed', 'value': speed},
+    ];
+
+    return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
         horizontal: AppSizes.medium,
@@ -58,47 +67,20 @@ class PokemonInfos extends StatelessWidget {
               ),
             ),
             SizedBox(height: AppSizes.medium),
-            PokemonCharacteristics(label: 'Height', value: 1),
-            PokemonCharacteristics(label: 'Weight', value: 0),
-            PokemonCharacteristics(
-              label: 'HP',
-              value: hp,
-              displayType: ValueDisplayType.progress,
-              progressColor: typeColor,
-            ),
-            PokemonCharacteristics(
-              label: 'Attack',
-              value: attack,
-              displayType: ValueDisplayType.progress,
-              progressColor: typeColor,
-            ),
-            PokemonCharacteristics(
-              label: 'Defense',
-              value: defense,
-              displayType: ValueDisplayType.progress,
-              progressColor: typeColor,
-            ),
-            PokemonCharacteristics(
-              label: 'Special-Attack',
-              value: specialAttack,
-              displayType: ValueDisplayType.progress,
-              progressColor: typeColor,
-            ),
-            PokemonCharacteristics(
-              label: 'Special-Defense',
-              value: specialDefense,
-              displayType: ValueDisplayType.progress,
-              progressColor: typeColor,
-            ),
-            PokemonCharacteristics(
-              label: 'Speed',
-              value: speed,
-              displayType: ValueDisplayType.progress,
-              progressColor: typeColor,
+            //TODO() formatar tamanho e peso
+            PokemonCharacteristics(label: 'Height', value: height),
+            PokemonCharacteristics(label: 'Weight', value: weight),
+            ...characteristics.map(
+              (characteristic) => PokemonCharacteristics(
+                label: characteristic['label']! as String,
+                value: characteristic['value']!,
+                displayType: ValueDisplayType.progress,
+                progressColor: typeColor,
+              ),
             ),
           ],
         ),
       ),
-    ),
-  );
+    );
+  }
 }

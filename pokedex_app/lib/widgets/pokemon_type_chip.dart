@@ -4,44 +4,33 @@ import 'package:pokedex_app/core/themes/app_size.dart';
 class PokemonTypeChip extends StatelessWidget {
   const PokemonTypeChip({
     super.key,
-    required this.types,
-    this.textTypesize = AppSizes.small,
+    required this.type,
+    this.textTypeSize = AppSizes.small,
     this.horizontalSize = AppSizes.extraSmall,
   });
 
-  final String types;
-  final double? textTypesize;
+  final String type;
+  final double? textTypeSize;
   final double horizontalSize;
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: horizontalSize,
-        vertical: AppSizes.extraSmall,
+  Widget build(BuildContext context) => Container(
+    padding: EdgeInsets.symmetric(
+      horizontal: horizontalSize,
+      vertical: AppSizes.extraSmall,
+    ),
+    margin: EdgeInsets.symmetric(horizontal: AppSizes.extraSmall),
+    decoration: BoxDecoration(
+      color: Colors.white.withAlpha((0.2 * 255).toInt()),
+      borderRadius: BorderRadius.circular(20),
+    ),
+    child: Text(
+      type,
+      style: TextStyle(
+        color: Colors.white,
+        fontSize: textTypeSize,
+        fontWeight: FontWeight.bold,
       ),
-      decoration: BoxDecoration(
-        color: Colors.white.withAlpha((0.2 * 255).toInt()),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppSizes.extraSmall,
-            ),
-            child: Text(
-              types,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: textTypesize,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+    ),
+  );
 }

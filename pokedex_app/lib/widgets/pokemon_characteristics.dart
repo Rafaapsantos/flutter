@@ -14,9 +14,31 @@ class PokemonCharacteristics extends StatelessWidget {
   });
 
   final String label;
-  final int value;
+  final Object value;
   final ValueDisplayType displayType;
   final Color? progressColor;
+
+  String get displayValue {
+    if (value is String) {
+      return value as String;
+    } else if (value is double) {
+      return (value as double).toStringAsFixed(1);
+    } else if (value is int) {
+      return value.toString();
+    } else {
+      return '-';
+    }
+  }
+
+  double get progressValue {
+    if (value is double) {
+      return (value as double).clamp(0, 100).toDouble();
+    } else if (value is int) {
+      return (value as int).toDouble().clamp(0, 100);
+    } else {
+      return 0.0;
+    }
+  }
 
   @override
   Widget build(BuildContext context) => Padding(
@@ -27,16 +49,14 @@ class PokemonCharacteristics extends StatelessWidget {
         Text(
           label,
           style: TextStyle(
-            //TODO() cria outra classe com tamanho de fonte
             fontSize: AppSizes.medium,
             fontWeight: FontWeight.w500,
-            //TODO() revisar colors q não estou utilizando no arquivo colors
             color: Colors.grey[700],
           ),
         ),
         switch (displayType) {
           ValueDisplayType.value => Text(
-            value.toString(),
+            displayValue,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: AppSizes.medium,
@@ -50,7 +70,7 @@ class PokemonCharacteristics extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(right: 8.0),
                 child: Text(
-                  value.toString(),
+                  displayValue,
                   style: TextStyle(
                     fontSize: AppSizes.medium,
                     fontWeight: FontWeight.w600,
@@ -61,7 +81,7 @@ class PokemonCharacteristics extends StatelessWidget {
               SizedBox(
                 width: 100,
                 child: LinearProgressIndicator(
-                  value: (value.toDouble() / 100).clamp(0.0, 1.0),
+                  value: (progressValue / 100).clamp(0.0, 1.0),
                   backgroundColor: Colors.grey[300],
                   color: progressColor ?? Colors.blue,
                 ),

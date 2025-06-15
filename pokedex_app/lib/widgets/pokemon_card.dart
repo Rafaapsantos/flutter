@@ -20,8 +20,9 @@ class PokemonCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final firstType = types.first.type.name;
-    final secondType = types.last.type.name;
+    final firstType =
+        types.isNotEmpty ? types.first.type.name : PokemonType.unknown;
+    final secondType = types.length > 1 ? types[1].type.name : null;
     final typeColor = firstType.color;
 
     return Card(
@@ -80,10 +81,10 @@ class PokemonCard extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          PokemonTypeChip(types: firstType.name),
-                          if (types.length > 1) ...[
+                          PokemonTypeChip(type: firstType.name),
+                          if (secondType != null) ...[
                             SizedBox(height: AppSizes.extraSmall),
-                            PokemonTypeChip(types: secondType.name),
+                            PokemonTypeChip(type: secondType.name),
                           ],
                         ],
                       ),

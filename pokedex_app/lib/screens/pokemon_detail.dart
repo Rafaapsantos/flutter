@@ -107,15 +107,15 @@ class _PokemonDetailState extends State<PokemonDetail> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         PokemonTypeChip(
-                          types: firstType.name,
-                          textTypesize: AppSizes.medium,
+                          type: firstType.name,
+                          textTypeSize: AppSizes.medium,
                           horizontalSize: AppSizes.small,
                         ),
                         if (widget.types.length > 1) ...[
                           SizedBox(height: AppSizes.extraSmall),
                           PokemonTypeChip(
-                            types: secondType.name,
-                            textTypesize: AppSizes.medium,
+                            type: secondType.name,
+                            textTypeSize: AppSizes.medium,
                             horizontalSize: AppSizes.small,
                           ),
                         ],

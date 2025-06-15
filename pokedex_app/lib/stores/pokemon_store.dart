@@ -4,10 +4,9 @@ import 'package:pokedex_app/data/models/pokemon_model.dart';
 import 'package:pokedex_app/domain/repositories/pokemon_repository.dart';
 
 class PokemonStore extends ChangeNotifier {
-  final PokemonRepository _repository;
-
   PokemonStore({required PokemonRepository repository})
     : _repository = repository;
+  final PokemonRepository _repository;
 
   bool _isLoading = false;
   String? _errorMessage;
@@ -27,7 +26,6 @@ class PokemonStore extends ChangeNotifier {
       _success = true;
       _errorMessage = null;
     } on PokemonException catch (e) {
-      print(e);
       _errorMessage = e.message;
       _success = false;
     } catch (_) {
