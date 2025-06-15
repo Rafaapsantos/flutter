@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_app/core/themes/app_colors.dart';
 import 'package:pokedex_app/core/themes/app_size.dart';
-import 'package:pokedex_app/widgets/info_about_pokemon_tab.dart';
+import 'package:pokedex_app/widgets/pokemon_infos.dart';
 import 'package:pokedex_app/widgets/pokemon_type_chip.dart';
 
 class PokemonDetail extends StatelessWidget {
@@ -74,9 +74,18 @@ class PokemonDetail extends StatelessWidget {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        PokemonTypeChip(types: type1),
+                        PokemonTypeChip(
+                          types: type1,
+                          textTypesize: AppSizes.size16,
+                          horizontalSize: AppSizes.size8,
+                        ),
                         if (type2.isNotEmpty) SizedBox(width: AppSizes.size8),
-                        if (type2.isNotEmpty) PokemonTypeChip(types: type2),
+                        if (type2.isNotEmpty)
+                          PokemonTypeChip(
+                            types: type2,
+                            textTypesize: AppSizes.size16,
+                            horizontalSize: AppSizes.size8,
+                          ),
                       ],
                     ),
                   ],
@@ -93,67 +102,16 @@ class PokemonDetail extends StatelessWidget {
             ),
           ),
           Center(child: Image.network(urlImage)),
-          Expanded(
-            child: Container(
-              width: double.infinity,
-              padding: EdgeInsets.symmetric(
-                horizontal: AppSizes.size16,
-                vertical: AppSizes.size12,
-              ),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(AppSizes.size28),
-                  topRight: Radius.circular(AppSizes.size28),
-                ),
-              ),
-              constraints: BoxConstraints(
-                minHeight: MediaQuery.of(context).size.height * 0.7,
-              ),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'About',
-                      style: TextStyle(
-                        fontSize: AppSizes.size20,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.black,
-                      ),
-                    ),
-                    SizedBox(height: AppSizes.size16),
-                    InfoAboutPokemonTab(label: 'Species', value: 'Seed'),
-                    InfoAboutPokemonTab(
-                      label: 'Height',
-                      value: '2\'3.6" (0.70 m)',
-                    ),
-                    InfoAboutPokemonTab(
-                      label: 'Weight',
-                      value: '15.2 lbs (6.9 kg)',
-                    ),
-                    InfoAboutPokemonTab(
-                      label: 'Abilities',
-                      value: 'Overgrow, Chlorophyll',
-                    ),
-                    InfoAboutPokemonTab(label: 'Species', value: 'Seed'),
-                    InfoAboutPokemonTab(
-                      label: 'Height',
-                      value: '2\'3.6" (0.70 m)',
-                    ),
-                    InfoAboutPokemonTab(
-                      label: 'Weight',
-                      value: '15.2 lbs (6.9 kg)',
-                    ),
-                    InfoAboutPokemonTab(
-                      label: 'Abilities',
-                      value: 'Overgrow, Chlorophyll',
-                    ),
-                    // Adicione mais conteúdo aqui se necessário
-                  ],
-                ),
-              ),
-            ),
+          PokemonInfos(
+            typeColor: typeColor,
+            height: '2\'3.6" (0.70 m)',
+            weight: '15.2 lbs (6.9 kg)',
+            hp: 10,
+            attack: 10,
+            defense: 10,
+            specialAttack: 10,
+            specialDefense: 10,
+            speed: 30,
           ),
         ],
       ),

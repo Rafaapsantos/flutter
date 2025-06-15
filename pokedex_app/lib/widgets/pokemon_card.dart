@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_app/core/themes/app_colors.dart';
 import 'package:pokedex_app/core/themes/app_size.dart';
-import 'package:pokedex_app/widgets/pokemon_detail.dart';
+import 'package:pokedex_app/screens/pokemon_detail.dart';
 import 'package:pokedex_app/widgets/pokemon_type_chip.dart';
 
 enum PokemonType {

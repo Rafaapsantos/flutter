@@ -89,44 +89,42 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             SizedBox(height: AppSizes.size24),
-            Expanded(child: _buildPokemonGrid(filteredPokemons)),
+            Expanded(
+              child:
+                  _store.isLoading
+                      ? const Center(child: CircularProgressIndicator())
+                      : _store.errorMessage != null
+                      ? Center(child: Text(_store.errorMessage!))
+                      : filteredPokemons.isEmpty
+                      ? const Center(child: Text('Nenhum pokémon encontrado'))
+                      : GridView.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              childAspectRatio: 0.9,
+                              mainAxisSpacing: AppSizes.size8,
+                              crossAxisSpacing: AppSizes.size8,
+                            ),
+                        itemCount: filteredPokemons.length,
+                        itemBuilder: (context, index) {
+                          final pokemon = filteredPokemons[index];
+                          return PokemonCard(
+                            id: pokemon.id,
+                            name: pokemon.forms.first.name,
+                            urlImage:
+                                pokemon.sprites.other.officialArtwork.image,
+                            type1: pokemon.types[0].type.name,
+                            type2:
+                                pokemon.types.length > 1
+                                    ? pokemon.types[1].type.name
+                                    : '',
+                          );
+                        },
+                      ),
+            ),
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildPokemonGrid(List pokemons) {
-    if (_store.isLoading) {
-      return const Center(child: CircularProgressIndicator());
-    }
-
-    if (_store.errorMessage != null) {
-      return Center(child: Text(_store.errorMessage!));
-    }
-
-    if (pokemons.isEmpty) {
-      return const Center(child: Text('Nenhum pokémon encontrado'));
-    }
-
-    return GridView.builder(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        childAspectRatio: 0.9,
-        mainAxisSpacing: AppSizes.size8,
-        crossAxisSpacing: AppSizes.size8,
-      ),
-      itemCount: pokemons.length,
-      itemBuilder: (context, index) {
-        final pokemon = pokemons[index];
-        return PokemonCard(
-          id: pokemon.id,
-          name: pokemon.forms.first.name,
-          urlImage: pokemon.sprites.other.officialArtwork.image,
-          type1: pokemon.types[0].type.name,
-          type2: pokemon.types.length > 1 ? pokemon.types[1].type.name : '',
-        );
-      },
     );
   }
 }
