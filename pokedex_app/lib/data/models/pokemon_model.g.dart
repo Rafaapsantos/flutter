@@ -55,11 +55,13 @@ Map<String, dynamic> _$TypesToJson(_Types instance) => <String, dynamic>{
   'type': instance.type,
 };
 
-_Type _$TypeFromJson(Map<String, dynamic> json) =>
-    _Type(name: json['name'] as String, url: json['url'] as String);
+_Type _$TypeFromJson(Map<String, dynamic> json) => _Type(
+  name: const PokemonTypeConverter().fromJson(json['name'] as String),
+  url: json['url'] as String,
+);
 
 Map<String, dynamic> _$TypeToJson(_Type instance) => <String, dynamic>{
-  'name': instance.name,
+  'name': const PokemonTypeConverter().toJson(instance.name),
   'url': instance.url,
 };
 

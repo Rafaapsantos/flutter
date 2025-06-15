@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pokedex_app/core/themes/app_size.dart';
 import 'package:pokedex_app/data/datasources/pokemon_data_source.dart';
+import 'package:pokedex_app/data/models/pokemon_model.dart';
 import 'package:pokedex_app/domain/repositories/pokemon_repository.dart';
 import 'package:pokedex_app/stores/pokemon_store.dart';
 import 'package:pokedex_app/widgets/pokemon_card.dart';
@@ -38,13 +39,15 @@ class _HomePageState extends State<HomePage> {
     setState(() {});
   }
 
-  List _filterPokemons() {
+  List<PokemonModel> _filterPokemons() {
     if (_searchQuery.isEmpty) return _store.pokemons;
-    return _store.pokemons.where((pokemon) {
-      return pokemon.forms.first.name.toLowerCase().contains(
-        _searchQuery.toLowerCase(),
-      );
-    }).toList();
+    return _store.pokemons
+        .where(
+          (pokemon) => pokemon.forms.first.name.toLowerCase().contains(
+            _searchQuery.toLowerCase(),
+          ),
+        )
+        .toList();
   }
 
   @override
@@ -53,14 +56,14 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.all(AppSizes.size28),
+        padding: EdgeInsets.all(AppSizes.large),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'Pokédex',
               style: GoogleFonts.bebasNeue(
-                fontSize: AppSizes.size54,
+                fontSize: AppSizes.extraLarge,
                 fontWeight: FontWeight.bold,
                 color: Colors.black87,
               ),
@@ -68,18 +71,18 @@ class _HomePageState extends State<HomePage> {
             Text(
               'Procure um pokémon pelo nome na barra de pesquisa.',
               style: TextStyle(
-                fontSize: AppSizes.size20,
+                fontSize: AppSizes.large,
                 color: const Color.fromARGB(255, 85, 85, 85),
                 fontWeight: FontWeight.w600,
               ),
             ),
-            SizedBox(height: AppSizes.size12),
+            SizedBox(height: AppSizes.small),
             TextField(
               decoration: InputDecoration(
                 hintText: 'Pesquisar...',
                 prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(AppSizes.size12),
+                  borderRadius: BorderRadius.circular(AppSizes.small),
                 ),
               ),
               onChanged: (value) {
@@ -88,7 +91,7 @@ class _HomePageState extends State<HomePage> {
                 });
               },
             ),
-            SizedBox(height: AppSizes.size24),
+            SizedBox(height: AppSizes.large),
             Expanded(
               child:
                   _store.isLoading
@@ -102,8 +105,8 @@ class _HomePageState extends State<HomePage> {
                             const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
                               childAspectRatio: 0.9,
-                              mainAxisSpacing: AppSizes.size8,
-                              crossAxisSpacing: AppSizes.size8,
+                              mainAxisSpacing: AppSizes.small,
+                              crossAxisSpacing: AppSizes.small,
                             ),
                         itemCount: filteredPokemons.length,
                         itemBuilder: (context, index) {
@@ -113,11 +116,7 @@ class _HomePageState extends State<HomePage> {
                             name: pokemon.forms.first.name,
                             urlImage:
                                 pokemon.sprites.other.officialArtwork.image,
-                            type1: pokemon.types[0].type.name,
-                            type2:
-                                pokemon.types.length > 1
-                                    ? pokemon.types[1].type.name
-                                    : '',
+                            types: pokemon.types,
                           );
                         },
                       ),

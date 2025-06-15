@@ -1,6 +1,9 @@
 // ignore_for_file: invalid_annotation_target
 
+import 'dart:ui';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:pokedex_app/core/themes/app_colors.dart';
 
 part 'pokemon_model.freezed.dart';
 part 'pokemon_model.g.dart';
@@ -37,7 +40,10 @@ abstract class Types with _$Types {
 
 @freezed
 abstract class Type with _$Type {
-  const factory Type({required String name, required String url}) = _Type;
+  const factory Type({
+    @PokemonTypeConverter() required PokemonType name,
+    required String url,
+  }) = _Type;
 
   factory Type.fromJson(Map<String, Object?> json) => _$TypeFromJson(json);
 }
@@ -84,4 +90,44 @@ abstract class Stat with _$Stat {
   const factory Stat({required String name, required String url}) = _Stat;
 
   factory Stat.fromJson(Map<String, Object?> json) => _$StatFromJson(json);
+}
+
+enum PokemonType {
+  normal(AppColors.normal),
+  fire(AppColors.fire),
+  water(AppColors.water),
+  grass(AppColors.grass),
+  electric(AppColors.electric),
+  ice(AppColors.ice),
+  fighting(AppColors.fighting),
+  poison(AppColors.poison),
+  ground(AppColors.ground),
+  flying(AppColors.flying),
+  psychic(AppColors.psychic),
+  bug(AppColors.bug),
+  rock(AppColors.rock),
+  ghost(AppColors.ghost),
+  dragon(AppColors.dragon),
+  steel(AppColors.steel),
+  fairy(AppColors.fairy),
+  dark(AppColors.dark),
+  stellar(AppColors.stellar),
+  unknown(AppColors.unknown);
+
+  const PokemonType(this.color);
+
+  final Color color;
+}
+
+class PokemonTypeConverter implements JsonConverter<PokemonType, String> {
+  const PokemonTypeConverter();
+
+  @override
+  PokemonType fromJson(String json) => PokemonType.values.firstWhere(
+    (e) => e.name.toLowerCase() == json.toLowerCase(),
+    orElse: () => PokemonType.unknown,
+  );
+
+  @override
+  String toJson(PokemonType object) => object.name;
 }

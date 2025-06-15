@@ -2,19 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:pokedex_app/screens/home_page.dart';
 
 void main() async {
-  runApp(const MyApp());
+  runApp(const PokedexApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class PokedexApp extends StatelessWidget {
+  const PokedexApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Pokedex',
-      debugShowCheckedModeBanner: false,
-      // theme: lightTheme,
-      home: HomePage(),
-    );
-  }
+  Widget build(BuildContext context) => MaterialApp(
+    title: 'Pokédex',
+    debugShowCheckedModeBanner: false,
+    home: HomePage(),
+  );
 }

@@ -3,27 +3,25 @@ import 'package:flutter/material.dart';
 import 'package:pokedex_app/core/themes/app_colors.dart';
 import 'package:pokedex_app/core/themes/app_size.dart';
 import 'package:pokedex_app/data/datasources/pokemon_data_source.dart';
+import 'package:pokedex_app/data/models/pokemon_model.dart';
 import 'package:pokedex_app/domain/repositories/pokemon_repository.dart';
 import 'package:pokedex_app/stores/pokemon_store.dart';
 import 'package:pokedex_app/widgets/pokemon_infos.dart';
 import 'package:pokedex_app/widgets/pokemon_type_chip.dart';
 
 class PokemonDetail extends StatefulWidget {
-  final Color typeColor;
-  final String name;
-  final int id;
-  final String urlImage;
-  final String type1;
-  final String type2;
   const PokemonDetail({
     super.key,
-    required this.typeColor,
     required this.name,
     required this.id,
     required this.urlImage,
-    required this.type1,
-    required this.type2,
+    required this.types,
   });
+
+  final String name;
+  final int id;
+  final String urlImage;
+  final List<Types> types;
 
   @override
   State<PokemonDetail> createState() => _PokemonDetailState();
@@ -53,15 +51,19 @@ class _PokemonDetailState extends State<PokemonDetail> {
 
   @override
   Widget build(BuildContext context) {
+    final firstType = widget.types.first.type.name;
+    final secondType = widget.types.last.type.name;
+    final typeColor = firstType.color;
+
     return Scaffold(
-      backgroundColor: widget.typeColor,
+      backgroundColor: typeColor,
       body: Column(
         children: [
           Padding(
             padding: EdgeInsets.only(
-              top: AppSizes.size36,
-              left: AppSizes.size16,
-              right: AppSizes.size16,
+              top: AppSizes.extraLarge,
+              left: AppSizes.medium,
+              right: AppSizes.medium,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -74,7 +76,7 @@ class _PokemonDetailState extends State<PokemonDetail> {
                   icon: Icon(
                     Icons.favorite_border,
                     color: Colors.white,
-                    size: AppSizes.size28,
+                    size: AppSizes.extraLarge,
                   ),
                   onPressed: () {},
                 ),
@@ -83,8 +85,8 @@ class _PokemonDetailState extends State<PokemonDetail> {
           ),
           Padding(
             padding: const EdgeInsets.only(
-              left: AppSizes.size16,
-              right: AppSizes.size16,
+              left: AppSizes.medium,
+              right: AppSizes.medium,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -95,28 +97,28 @@ class _PokemonDetailState extends State<PokemonDetail> {
                     Text(
                       widget.name,
                       style: TextStyle(
-                        fontSize: AppSizes.size36,
+                        fontSize: AppSizes.extraLarge,
                         fontWeight: FontWeight.w600,
                         color: AppColors.white,
                       ),
                     ),
-                    SizedBox(height: AppSizes.size4),
+                    SizedBox(height: AppSizes.extraSmall),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         PokemonTypeChip(
-                          types: widget.type1,
-                          textTypesize: AppSizes.size16,
-                          horizontalSize: AppSizes.size8,
+                          types: firstType.name,
+                          textTypesize: AppSizes.medium,
+                          horizontalSize: AppSizes.small,
                         ),
-                        if (widget.type2.isNotEmpty)
-                          SizedBox(width: AppSizes.size8),
-                        if (widget.type2.isNotEmpty)
+                        if (widget.types.length > 1) ...[
+                          SizedBox(height: AppSizes.extraSmall),
                           PokemonTypeChip(
-                            types: widget.type2,
-                            textTypesize: AppSizes.size16,
-                            horizontalSize: AppSizes.size8,
+                            types: secondType.name,
+                            textTypesize: AppSizes.medium,
+                            horizontalSize: AppSizes.small,
                           ),
+                        ],
                       ],
                     ),
                   ],
@@ -124,7 +126,7 @@ class _PokemonDetailState extends State<PokemonDetail> {
                 Text(
                   '#${widget.id}',
                   style: TextStyle(
-                    fontSize: AppSizes.size24,
+                    fontSize: AppSizes.large,
                     fontWeight: FontWeight.w600,
                     color: Colors.white,
                   ),
@@ -138,22 +140,22 @@ class _PokemonDetailState extends State<PokemonDetail> {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(AppSizes.size32),
-                  topRight: Radius.circular(AppSizes.size32),
+                  topLeft: Radius.circular(AppSizes.extraLarge),
+                  topRight: Radius.circular(AppSizes.extraLarge),
                 ),
               ),
               child: Builder(
                 builder: (context) {
                   if (_store.isLoading) {
                     return Center(
-                      child: CircularProgressIndicator(color: widget.typeColor),
+                      child: CircularProgressIndicator(color: typeColor),
                     );
                   }
                   if (_store.errorMessage != null) {
                     return Center(
                       child: Text(
                         _store.errorMessage!,
-                        style: TextStyle(color: widget.typeColor),
+                        style: TextStyle(color: typeColor),
                       ),
                     );
                   }
@@ -165,12 +167,12 @@ class _PokemonDetailState extends State<PokemonDetail> {
                     return Center(
                       child: Text(
                         'Dados não encontrados.',
-                        style: TextStyle(color: widget.typeColor),
+                        style: TextStyle(color: typeColor),
                       ),
                     );
                   }
                   return PokemonInfos(
-                    typeColor: widget.typeColor,
+                    typeColor: typeColor,
                     height: pokemon.height.toString(),
                     weight: pokemon.weight.toString(),
                     hp: pokemon.stats.first.baseStat,

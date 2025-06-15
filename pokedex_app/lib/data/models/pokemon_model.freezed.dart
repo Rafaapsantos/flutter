@@ -493,7 +493,7 @@ $TypeCopyWith<$Res> get type {
 /// @nodoc
 mixin _$Type {
 
- String get name; String get url;
+@PokemonTypeConverter() PokemonType get name; String get url;
 /// Create a copy of Type
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -526,7 +526,7 @@ abstract mixin class $TypeCopyWith<$Res>  {
   factory $TypeCopyWith(Type value, $Res Function(Type) _then) = _$TypeCopyWithImpl;
 @useResult
 $Res call({
- String name, String url
+@PokemonTypeConverter() PokemonType name, String url
 });
 
 
@@ -546,7 +546,7 @@ class _$TypeCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? url = null,}) {
   return _then(_self.copyWith(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
+as PokemonType,url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -558,10 +558,10 @@ as String,
 @JsonSerializable()
 
 class _Type implements Type {
-  const _Type({required this.name, required this.url});
+  const _Type({@PokemonTypeConverter() required this.name, required this.url});
   factory _Type.fromJson(Map<String, dynamic> json) => _$TypeFromJson(json);
 
-@override final  String name;
+@override@PokemonTypeConverter() final  PokemonType name;
 @override final  String url;
 
 /// Create a copy of Type
@@ -597,7 +597,7 @@ abstract mixin class _$TypeCopyWith<$Res> implements $TypeCopyWith<$Res> {
   factory _$TypeCopyWith(_Type value, $Res Function(_Type) _then) = __$TypeCopyWithImpl;
 @override @useResult
 $Res call({
- String name, String url
+@PokemonTypeConverter() PokemonType name, String url
 });
 
 
@@ -617,7 +617,7 @@ class __$TypeCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? url = null,}) {
   return _then(_Type(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
+as PokemonType,url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
