@@ -59,8 +59,8 @@ class PokemonInfos extends StatelessWidget {
                 ),
               ),
               SizedBox(height: AppSizes.size16),
-              InfoAboutPokemonTab(label: 'Height', value: height),
-              InfoAboutPokemonTab(label: 'Weight', value: weight),
+              InfoAboutPokemonTab(label: 'Height', value: '$height m'),
+              InfoAboutPokemonTab(label: 'Weight', value: '$weight kg'),
               InfoAboutPokemonTab(
                 label: 'HP',
                 value: hp,
