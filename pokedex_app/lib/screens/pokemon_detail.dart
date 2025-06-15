@@ -54,6 +54,7 @@ class _PokemonDetailState extends State<PokemonDetail> {
     final firstType = widget.types.first.type.name;
     final secondType = widget.types.last.type.name;
     final typeColor = firstType.color;
+    final pokemon = _store.selectedPokemon;
 
     return Scaffold(
       backgroundColor: typeColor,
@@ -69,13 +70,13 @@ class _PokemonDetailState extends State<PokemonDetail> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                  icon: const Icon(Icons.arrow_back, color: Colors.white),
+                  icon: const Icon(Icons.arrow_back, color: AppColors.white),
                   onPressed: () => Navigator.pop(context),
                 ),
                 IconButton(
                   icon: Icon(
                     Icons.favorite_border,
-                    color: Colors.white,
+                    color: AppColors.white,
                     size: AppSizes.extraLarge,
                   ),
                   onPressed: () {},
@@ -106,14 +107,14 @@ class _PokemonDetailState extends State<PokemonDetail> {
                         PokemonTypeChip(
                           type: firstType.name,
                           textTypeSize: AppSizes.medium,
-                          horizontalSize: AppSizes.small,
+                          horizontalSize: AppSizes.smallMedium,
                         ),
                         if (widget.types.length > 1) ...[
                           SizedBox(width: AppSizes.extraSmall),
                           PokemonTypeChip(
                             type: secondType.name,
                             textTypeSize: AppSizes.medium,
-                            horizontalSize: AppSizes.small,
+                            horizontalSize: AppSizes.smallMedium,
                           ),
                         ],
                       ],
@@ -125,7 +126,7 @@ class _PokemonDetailState extends State<PokemonDetail> {
                   style: TextStyle(
                     fontSize: AppSizes.large,
                     fontWeight: FontWeight.w600,
-                    color: Colors.white,
+                    color: AppColors.white,
                   ),
                 ),
               ],
@@ -135,7 +136,7 @@ class _PokemonDetailState extends State<PokemonDetail> {
           Expanded(
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: AppColors.white,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(AppSizes.extraLarge),
                   topRight: Radius.circular(AppSizes.extraLarge),
@@ -156,7 +157,6 @@ class _PokemonDetailState extends State<PokemonDetail> {
                       ),
                     );
                   }
-                  final pokemon = _store.selectedPokemon;
                   if (pokemon == null) {
                     return Center(
                       child: Text(

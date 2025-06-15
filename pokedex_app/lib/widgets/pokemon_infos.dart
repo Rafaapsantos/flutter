@@ -27,6 +27,16 @@ class PokemonInfos extends StatelessWidget {
   final int specialDefense;
   final int speed;
 
+  String formatHeight(int height) {
+    final double heightInMeters = height / 10.0;
+    return '${heightInMeters.toStringAsFixed(1)} m';
+  }
+
+  String formatWeight(int weight) {
+    final double weightInKg = weight / 10.0;
+    return '${weightInKg.toStringAsFixed(1)} kg';
+  }
+
   @override
   Widget build(BuildContext context) {
     final characteristics = [
@@ -45,7 +55,7 @@ class PokemonInfos extends StatelessWidget {
         vertical: AppSizes.small,
       ),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.white,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(AppSizes.large),
           topRight: Radius.circular(AppSizes.large),
@@ -67,9 +77,14 @@ class PokemonInfos extends StatelessWidget {
               ),
             ),
             SizedBox(height: AppSizes.medium),
-            //TODO() formatar tamanho e peso
-            PokemonCharacteristics(label: 'Height', value: height),
-            PokemonCharacteristics(label: 'Weight', value: weight),
+            PokemonCharacteristics(
+              label: 'Height',
+              value: formatHeight(int.tryParse(height) ?? 0),
+            ),
+            PokemonCharacteristics(
+              label: 'Weight',
+              value: formatWeight(int.tryParse(weight) ?? 0),
+            ),
             ...characteristics.map(
               (characteristic) => PokemonCharacteristics(
                 label: characteristic['label']! as String,

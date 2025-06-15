@@ -29,7 +29,7 @@ class PokemonCard extends StatelessWidget {
       color: typeColor,
       clipBehavior: Clip.hardEdge,
       child: InkWell(
-        splashColor: Colors.grey,
+        splashColor: AppColors.grey,
         onTap: () async {
           await Navigator.push(
             context,

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pokedex_app/core/themes/app_colors.dart';
 import 'package:pokedex_app/core/themes/app_size.dart';
 import 'package:pokedex_app/data/datasources/pokemon_data_source.dart';
 import 'package:pokedex_app/domain/repositories/pokemon_repository.dart';
@@ -51,7 +52,7 @@ class _HomePageState extends State<HomePage> {
               style: GoogleFonts.bebasNeue(
                 fontSize: AppSizes.extraLarge,
                 fontWeight: FontWeight.bold,
-                color: Colors.black87,
+                color: AppColors.black87,
               ),
             ),
             Text(

@@ -51,7 +51,7 @@ class PokemonCharacteristics extends StatelessWidget {
           style: TextStyle(
             fontSize: AppSizes.medium,
             fontWeight: FontWeight.w500,
-            color: Colors.grey[700],
+            color: AppColors.grey700,
           ),
         ),
         switch (displayType) {
@@ -82,8 +82,8 @@ class PokemonCharacteristics extends StatelessWidget {
                 width: 100,
                 child: LinearProgressIndicator(
                   value: (progressValue / 100).clamp(0.0, 1.0),
-                  backgroundColor: Colors.grey[300],
-                  color: progressColor ?? Colors.blue,
+                  backgroundColor: AppColors.grey300,
+                  color: progressColor,
                 ),
               ),
             ],
