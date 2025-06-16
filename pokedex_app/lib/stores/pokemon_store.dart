@@ -22,7 +22,7 @@ class PokemonStore extends ChangeNotifier {
   PokemonModel? get selectedPokemon => _selectedPokemon;
   String get searchQuery => _searchQuery;
 
-  // Getter de lista filtrada já aplicando o search
+  // Getter para filtrar os pokémons por nome
   List<PokemonModel> get filteredPokemons {
     if (_searchQuery.isEmpty) return _pokemons;
     return _pokemons
@@ -40,7 +40,7 @@ class PokemonStore extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Busca todos os pokemons (para a HomePage)
+  // Busca todos os pokemons
   Future<void> getPokemonCards() async {
     _setLoading(true);
 
@@ -49,11 +49,9 @@ class PokemonStore extends ChangeNotifier {
       _pokemons = result;
       _errorMessage = null;
     } on PokemonException catch (e) {
-      debugPrint(e.toString());
       _errorMessage = e.message;
       _pokemons = [];
     } catch (e) {
-      debugPrint(e.toString());
       _errorMessage = 'Erro desconhecido ao buscar pokémons.';
       _pokemons = [];
     } finally {
@@ -61,7 +59,7 @@ class PokemonStore extends ChangeNotifier {
     }
   }
 
-  // Busca individual de um pokemon (para o detalhe)
+  // Busca individual do pokemon
   Future<void> getPokemonById(int id) async {
     _setLoading(true);
 
@@ -81,11 +79,9 @@ class PokemonStore extends ChangeNotifier {
       }
       _errorMessage = null;
     } on PokemonException catch (e) {
-      debugPrint(e.toString());
       _errorMessage = e.message;
       _selectedPokemon = null;
     } catch (e) {
-      debugPrint(e.toString());
       _errorMessage = 'Erro ao buscar o pokémon selecionado.';
       _selectedPokemon = null;
     } finally {
@@ -93,7 +89,6 @@ class PokemonStore extends ChangeNotifier {
     }
   }
 
-  // Método privado de loading para evitar repetição
   void _setLoading(bool value) {
     _isLoading = value;
     notifyListeners();

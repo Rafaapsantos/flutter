@@ -35,16 +35,21 @@ class _PokemonDetailState extends State<PokemonDetail> {
   @override
   void initState() {
     super.initState();
-    _store.addListener(_onStoreUpdated);
-    _store.getPokemonById(widget.id);
+    _store.addListener(_onStoreUpdated); //Registra o listener
+    _store.getPokemonById(
+      widget.id,
+    ); //Inicia o carregamento dos Pokémons chamando
   }
 
   @override
   void dispose() {
-    _store.removeListener(_onStoreUpdated);
+    _store.removeListener(
+      _onStoreUpdated,
+    ); //Remove o listener da store ao destruir a tela, evitando vazamento de memória.
     super.dispose();
   }
 
+  //Sempre que o PokemonStore for atualizado, ele força o rebuild da tela.
   void _onStoreUpdated() {
     setState(() {});
   }
@@ -142,7 +147,9 @@ class _PokemonDetailState extends State<PokemonDetail> {
                   topRight: Radius.circular(AppSizes.extraLarge),
                 ),
               ),
+
               child: Builder(
+                //cria a árvore de widgets com um contexto próprio.
                 builder: (context) {
                   if (_store.isLoading) {
                     return Center(

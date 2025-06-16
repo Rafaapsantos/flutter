@@ -23,16 +23,18 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    _store.addListener(_onStoreUpdated);
-    _store.getPokemonCards();
+    _store.addListener(_onStoreUpdated); //Registra o listener
+    _store.getPokemonCards(); //Inicia o carregamento de todos os Pokémons
   }
 
   @override
   void dispose() {
     _store.removeListener(_onStoreUpdated);
-    super.dispose();
+    super
+        .dispose(); //Remove o listener da store ao destruir a tela, evitando vazamento de memória.
   }
 
+  //Sempre que o PokemonStore for atualizado, ele força o rebuild da tela.
   void _onStoreUpdated() {
     setState(() {});
   }
@@ -64,6 +66,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             SizedBox(height: AppSizes.small),
+            //Filtra os Pokémons com base no texto digitado
             TextField(
               decoration: InputDecoration(
                 hintText: 'Pesquisar...',
@@ -72,26 +75,34 @@ class _HomePageState extends State<HomePage> {
                   borderRadius: BorderRadius.circular(AppSizes.small),
                 ),
               ),
+              //Notifica os listeners para atualizar a UI
               onChanged: _store.setSearchQuery,
             ),
             SizedBox(height: AppSizes.large),
             Expanded(
               child:
-                  _store.isLoading
+                  _store
+                          .isLoading //Se o app ainda está carregando os dados, mostra o CircularProgressIndicator()
                       ? const Center(child: CircularProgressIndicator())
-                      : _store.errorMessage != null
+                      : _store.errorMessage !=
+                          null //Se houve algum erro na requisição, mostra mensagem de erro
                       ? Center(child: Text(_store.errorMessage!))
-                      : filteredPokemons.isEmpty
+                      : filteredPokemons
+                          .isEmpty //Se não está carregando nem tem erro, mas nenhum pokémon foi encontrado com o filtro digitado, exibe esse aviso.
                       ? const Center(child: Text('Nenhum pokémon encontrado'))
                       : GridView.builder(
-                        gridDelegate:
+                        //Já carregou, Não deu erro, Tem resultados no filtro? Ele mostra os cards dos Pokémons
+                        gridDelegate: //configuração da grade
                             const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              childAspectRatio: 0.9,
-                              mainAxisSpacing: AppSizes.small,
-                              crossAxisSpacing: AppSizes.small,
-                            ),
-                        itemCount: filteredPokemons.length,
+                          crossAxisCount: 2,
+                          childAspectRatio: 0.9,
+                          mainAxisSpacing: AppSizes.small,
+                          crossAxisSpacing: AppSizes.small,
+                        ),
+                        itemCount:
+                            filteredPokemons
+                                .length, //Quantidade total de itens que o GridView vai construir.
+                        //cria o widget para cada item da lista.
                         itemBuilder: (context, index) {
                           final pokemon = filteredPokemons[index];
                           return PokemonCard(

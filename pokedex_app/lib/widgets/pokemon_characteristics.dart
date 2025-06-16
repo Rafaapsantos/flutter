@@ -18,6 +18,7 @@ class PokemonCharacteristics extends StatelessWidget {
   final ValueDisplayType displayType;
   final Color? progressColor;
 
+  //Formata o valor para String, independente se for int, double ou String.
   String get displayValue {
     if (value is String) {
       return value as String;
@@ -30,6 +31,7 @@ class PokemonCharacteristics extends StatelessWidget {
     }
   }
 
+  //Converte o valor para double e limita de 0 a 100.
   double get progressValue {
     if (value is double) {
       return (value as double).clamp(0, 100).toDouble();
@@ -68,7 +70,7 @@ class PokemonCharacteristics extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Padding(
-                padding: const EdgeInsets.only(right: 8.0),
+                padding: const EdgeInsets.only(right: AppSizes.small),
                 child: Text(
                   displayValue,
                   style: TextStyle(
@@ -81,7 +83,7 @@ class PokemonCharacteristics extends StatelessWidget {
               SizedBox(
                 width: 100,
                 child: LinearProgressIndicator(
-                  value: (progressValue / 100).clamp(0.0, 1.0),
+                  value: (progressValue / 100),
                   backgroundColor: AppColors.grey300,
                   color: progressColor,
                 ),

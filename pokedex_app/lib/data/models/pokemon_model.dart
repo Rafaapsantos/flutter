@@ -8,6 +8,7 @@ import 'package:pokedex_app/core/themes/app_colors.dart';
 part 'pokemon_model.freezed.dart';
 part 'pokemon_model.g.dart';
 
+//Representa um Pokémon com os principais atributos
 @freezed
 abstract class PokemonModel with _$PokemonModel {
   const factory PokemonModel({
@@ -24,6 +25,7 @@ abstract class PokemonModel with _$PokemonModel {
       _$PokemonModelFromJson(json);
 }
 
+//Representa o nome e URL de um Pokémon
 @freezed
 abstract class Forms with _$Forms {
   const factory Forms({required String name, required String url}) = _Forms;
@@ -31,6 +33,7 @@ abstract class Forms with _$Forms {
   factory Forms.fromJson(Map<String, Object?> json) => _$FormsFromJson(json);
 }
 
+//Define os tipos do Pokémon, com posição (slot) e o tipo em si (type).
 @freezed
 abstract class Types with _$Types {
   const factory Types({required int slot, required Type type}) = _Types;
@@ -38,6 +41,8 @@ abstract class Types with _$Types {
   factory Types.fromJson(Map<String, Object?> json) => _$TypesFromJson(json);
 }
 
+//Contém o nome e a URL do tipo. Usa o conversor
+// para transformar o nome em um enum PokemonType.
 @freezed
 abstract class Type with _$Type {
   const factory Type({
@@ -48,6 +53,7 @@ abstract class Type with _$Type {
   factory Type.fromJson(Map<String, Object?> json) => _$TypeFromJson(json);
 }
 
+//Representam as imagens oficiais do Pokémon
 @freezed
 abstract class Sprites with _$Sprites {
   const factory Sprites({required Other other}) = _Sprites;
@@ -75,6 +81,7 @@ abstract class OfficialArtWork with _$OfficialArtWork {
       _$OfficialArtWorkFromJson(json);
 }
 
+//Representam as estatísticas do Pokémon
 @freezed
 abstract class Stats with _$Stats {
   const factory Stats({
@@ -92,6 +99,7 @@ abstract class Stat with _$Stat {
   factory Stat.fromJson(Map<String, Object?> json) => _$StatFromJson(json);
 }
 
+//Define todos os tipos possíveis de Pokémon e associa uma cor a cada tipo
 enum PokemonType {
   normal(AppColors.normal),
   fire(AppColors.fire),
@@ -118,6 +126,9 @@ enum PokemonType {
 
   final Color color;
 }
+
+//Conversor que transforma o nome do tipo(string)
+//para o enum PokemonType automaticamente durante a conversão JSON.
 
 class PokemonTypeConverter implements JsonConverter<PokemonType, String> {
   const PokemonTypeConverter();
