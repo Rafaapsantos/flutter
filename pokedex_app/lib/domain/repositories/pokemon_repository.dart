@@ -8,7 +8,7 @@ class PokemonRepository {
 
   Future<List<PokemonModel>> getPokemonCards() async {
     final List<PokemonModel> pokemons = [];
-    for (var i = 1; i <= 200; i++) {
+    for (var i = 1; i <= 100; i++) {
       final response = await dataSource.getPokemonDetail(i.toString());
       pokemons.add(response);
     }

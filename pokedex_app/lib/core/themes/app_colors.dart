@@ -7,6 +7,7 @@ final class AppColors {
   static const Color grey = Colors.grey;
   static const Color grey700 = Color(0xFF616161);
   static const Color grey300 = Color(0xFFE0E0E0);
+  static const Color red = Colors.red;
 
   static const Color normal = Color(0xFFA1887F);
   static const Color fire = Colors.red;

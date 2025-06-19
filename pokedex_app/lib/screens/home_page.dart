@@ -5,6 +5,7 @@ import 'package:pokedex_app/core/themes/app_colors.dart';
 import 'package:pokedex_app/core/themes/app_size.dart';
 import 'package:pokedex_app/data/datasources/pokemon_data_source.dart';
 import 'package:pokedex_app/domain/repositories/pokemon_repository.dart';
+import 'package:pokedex_app/screens/favorite_page.dart';
 import 'package:pokedex_app/stores/pokemon_store.dart';
 import 'package:pokedex_app/widgets/pokemon_card.dart';
 
@@ -44,6 +45,50 @@ class _HomePageState extends State<HomePage> {
     final filteredPokemons = _store.filteredPokemons;
 
     return Scaffold(
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            Container(
+              padding: const EdgeInsets.only(
+                top: AppSizes.extraLarge,
+                left: AppSizes.large,
+              ),
+              alignment: Alignment.centerLeft,
+              color: Colors.grey[200],
+              child: const Text(
+                'Menu',
+                style: TextStyle(
+                  fontSize: AppSizes.large,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            ListTile(
+              title: const Text(
+                'Meus Favoritos',
+                style: TextStyle(
+                  fontSize: AppSizes.largeMedium,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              leading: const Icon(Icons.favorite, color: AppColors.red),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const FavoritePage()),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+      appBar: AppBar(
+        title: const Text('Pokédex'),
+        backgroundColor: AppColors.white,
+        foregroundColor: AppColors.black,
+        elevation: 0,
+      ),
       body: Padding(
         padding: EdgeInsets.all(AppSizes.large),
         child: Column(

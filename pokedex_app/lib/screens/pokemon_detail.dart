@@ -2,7 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex_app/core/themes/app_colors.dart';
 import 'package:pokedex_app/core/themes/app_size.dart';
+import 'package:pokedex_app/data/database/favorite_database.dart';
 import 'package:pokedex_app/data/datasources/pokemon_data_source.dart';
+import 'package:pokedex_app/data/models/favorite_pokemon_model.dart';
 import 'package:pokedex_app/data/models/pokemon_model.dart';
 import 'package:pokedex_app/domain/repositories/pokemon_repository.dart';
 import 'package:pokedex_app/stores/pokemon_store.dart';
@@ -32,14 +34,15 @@ class _PokemonDetailState extends State<PokemonDetail> {
     repository: PokemonRepository(dataSource: PokemonDataSource(Dio())),
   );
 
+  bool isFavorite = false;
+
   @override
   void initState() {
     super.initState();
     _store.addListener(_onStoreUpdated); //Registra o listener
-    _store.getPokemonById(
-      widget.id,
-    ); //Inicia o carregamento dos Pokémons chamando
-  }
+    _store.getPokemonById(widget.id);
+    checkIfFavorite();
+  } //Inicia o carregamento dos Pokémons chamando
 
   @override
   void dispose() {
@@ -52,6 +55,33 @@ class _PokemonDetailState extends State<PokemonDetail> {
   //Sempre que o PokemonStore for atualizado, ele força o rebuild da tela.
   void _onStoreUpdated() {
     setState(() {});
+  }
+
+  Future<void> checkIfFavorite() async {
+    isFavorite = await FavoriteDatabase.isFavorite(widget.id);
+    setState(() {});
+  }
+
+  Future<void> toggleFavorite() async {
+    print('Favorito antes: $isFavorite');
+
+    if (isFavorite) {
+      await FavoriteDatabase.removeFavorite(widget.id);
+      print('Removido dos favoritos');
+    } else {
+      final fav = FavoritePokemonModel(
+        id: widget.id,
+        name: widget.name,
+        imageUrl: widget.urlImage,
+        types: widget.types.map((t) => t.type.name.name).toList(),
+      );
+      print('Adicionando: $fav');
+      await FavoriteDatabase.addFavorite(fav);
+      print('Adicionado aos favoritos');
+    }
+
+    await checkIfFavorite();
+    print('Favorito depois: $isFavorite');
   }
 
   @override
@@ -80,11 +110,11 @@ class _PokemonDetailState extends State<PokemonDetail> {
                 ),
                 IconButton(
                   icon: Icon(
-                    Icons.favorite_border,
+                    isFavorite ? Icons.favorite : Icons.favorite_border,
                     color: AppColors.white,
                     size: AppSizes.extraLarge,
                   ),
-                  onPressed: () {},
+                  onPressed: toggleFavorite,
                 ),
               ],
             ),
