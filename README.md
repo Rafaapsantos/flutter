@@ -25,6 +25,9 @@ Aqui estão alguns dos projetos presentes neste repositório:
 
 🔹 [flutter_projeto_4](./flutter_project_4/)  
 
+🔹 [pokedex_app](./pokedex_app/)  
+
+
 ## 🚀 Próximos Passos para Avançar em Flutter
 1. Gerenciamento de Estado
 2. Autenticação de Usuário
